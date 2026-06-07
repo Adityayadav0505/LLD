@@ -12,42 +12,24 @@ Implement the `NumArray` class:
 ## Code (Java)
 
 ```java
-class RecentCounter {
+class NumArray {
+    private int[] nums;
 
-    private int[] time = new int[10010];
-    private int currIndex;
-
-    public RecentCounter() {
-        currIndex = 0;
+    public NumArray(int[] nums) {
+        this.nums = nums;
     }
 
-    public int ping(int t) {
-        time[currIndex++] = t;
-        int firstIndex = binarySearch(t-3000);
-        return currIndex - firstIndex;
-    }
-
-    private int binarySearch(int t){
-        int left = 0;
-        int right = currIndex;
-
-        while(left < right){
-            int mid = (left+right)/2;
-
-            if(time[mid] < t){
-                left = mid+1;
-            }
-            else{
-                right = mid;
-            }
-        }
-        return left;
+    public int sumRange(int left, int right) {
+        int sum = 0;
+        for(int i=left; i<=right; i++)
+            sum += nums[i];
+        return sum;
     }
 }
 
 /**
- * Your RecentCounter object will be instantiated and called as such:
- * RecentCounter obj = new RecentCounter();
- * int param_1 = obj.ping(t);
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(left,right);
  */
 ```
